@@ -1,0 +1,41 @@
+---
+# Install tasks for ansible-role-folders
+- name: Create Library Folder
+  file: path=/home/{{ username }}/Public/Library state=directory owner={{ username }} group={{ username }}
+
+
+- name: Create Downloads Folder
+  file: path=/home/{{ username }}/Public/Library/Downloads state=directory owner={{ username }} group={{ username }}
+
+- name: Create Movies Folder
+  file: path=/home/{{ username }}/Public/Library/Movies state=directory owner={{ username }} group={{ username }}
+
+- name: Create Downloads TVShows
+  file: path=/home/{{ username }}/Public/Library/TVShows state=directory owner={{ username }} group={{ username }}
+
+- name: Create Downloads Music
+  file: path=/home/{{ username }}/Public/Library/Music state=directory owner={{ username }} group={{ username }}
+
+- name: Create Downloads Pictures
+  file: path=/home/{{ username }}/Public/Library/Pictures state=directory owner={{ username }} group={{ username }}
+
+- name: Create Downloads/complete Folder
+  file: path=/home/{{ username }}/Public/Library/Downloads/complete state=directory owner={{ username }} group={{ username }}
+
+- name: Create Downloads/incoming Folder
+  file: path=/home/{{ username }}/Public/Library/Downloads/incoming state=directory owner={{ username }} group={{ username }}
+
+- name: Create Downloads/torrent Folder
+  file: path=/home/{{ username }}/Public/Library/Downloads/torrent state=directory owner={{ username }} group={{ username }}
+
+- name: Create Downloads/complete/movie Folder
+  file: path=/home/{{ username }}/Public/Library/Downloads/complete/movie state=directory owner={{ username }} group={{ username }}
+
+- name: Create Downloads/complete/music Folder
+  file: path=/home/{{ username }}/Public/Library/Downloads/complete/music state=directory owner={{ username }} group={{ username }}
+
+- name: Create Downloads/complete/tvshow Folder
+  file: path=/home/{{ username }}/Public/Library/Downloads/complete/tvshow state=directory owner={{ username }} group={{ username }}
+
+
+
