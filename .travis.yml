@@ -3,7 +3,10 @@ language: python
 python: "2.7"
 
 # Use the new container infrastructure
-sudo: false
+sudo: true
+
+before_install:
+  - sudo apt-get update -qq
 
 # Install ansible
 addons:
@@ -25,5 +28,39 @@ script:
   # Basic role syntax check
   - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
 
+  # Run the role/playbook with ansible-playbook.
+  - "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo"
+
+  # Run the role/playbook again, checking to make sure it's idempotent.
+  - >
+    ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)
+  
+  #TODO: test if postgres installed properly. 
+  # Check running postgres has exit code 0
+  - >
+    cd /home/root/Public/Library 
+    && (echo 'Status of Library directory is 0 - pass' && exit 0)
+    || (echo 'Status of Library directory is not 0 - fail' && exit 1)
+
 notifications:
+  #TODO: webhooks for galaxy
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  email: false
+  slack: 
+    rooms: 
+      - secure: "iadTcUGoUSgqLM92i9AKFFy0bMqoNdwfHeo3YY3ftZv/l+GfZ6eCdncDe6YHE9XNGI3RPNOunCqSFPQHVH5u3Hs7+ohojfJpQ6fgDcfKaoAIMXNCLm5ivcDnufLSHT/1BcgEXp2OaYp2ndow8pBaLE2czDPShvQdxYe5LwZQQmGvJnPf0V1pUoiO0CUAWPE37G35OuYSYtkl/F2wSwaJLXF/NIbrHg2Ykyd45aGgfx+GtMm5xarEIspfxhx5kM916B8Z+SCZ4fg4HsO3cB/0zu8tn8S88w6uVUCEjuHNKgM91Bvbwz+pUCbYF7GaAjdqfISsUj0rc4PJJOQJkLudg/h+FceZLVvAWwSfx0E5vsz5ato0TZAOFZyt2/gviEsGBkhYSXsZWRtuOIe4dgzskBYQmZMB10qDLsGMqAnvdGzd2vSP9+ouuazPZt6EkAEyUhoUiP5lCu+tyP34g2ERkE8yMUkZi/3XMka3HZCfYqM7frB5G4nxTdeJ3JL8t6eteZAkl5Q8onN0nnrnjbhsU07xeatAYfOtLXF0hYdtseeFj3nCIhFgjdP+ytSwF6j2ON3exsKW+QPEdEXnBFmz/hoN8ScCkxrcDw3dDck96tKU6lkVkPHT5c87NKfOBjvotJ1LrdJ15QAj/85WuzD+D8cT2mvxXz5aPky5litnjB8="
+    on_start:   always
+    on_success: always
+    on_failure: always
+    
+   
+
+
+
+
+
+
+  
