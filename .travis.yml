@@ -41,7 +41,7 @@ script:
   #TODO: test if postgres installed properly. 
   # Check running postgres has exit code 0
   - >
-    cd /home/jarvis/Public/Library 
+    cd /home/travis/Public/Library 
     && (echo 'Status of Library directory is 0 - pass' && exit 0)
     || (echo 'Status of Library directory is not 0 - fail' && exit 1)
 
