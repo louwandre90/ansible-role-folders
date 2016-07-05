@@ -1,6 +1,6 @@
 galaxy_info:
   author: louwandre90
-  description: Ansible script to install postgres 
+  description: Ansible script to install direcotries for media files 
   company: J.A.R.V.I.S. Projects
   version: 1.0.0
   
