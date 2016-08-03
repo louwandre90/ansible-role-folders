@@ -10,13 +10,13 @@
 - name: Create Movies Folder
   file: path=/home/{{ username }}/Public/Library/Movies state=directory owner={{ username }} group={{ username }}
 
-- name: Create Downloads TVShows
+- name: Create TVShows
   file: path=/home/{{ username }}/Public/Library/TVShows state=directory owner={{ username }} group={{ username }}
 
-- name: Create Downloads Music
+- name: Create Music
   file: path=/home/{{ username }}/Public/Library/Music state=directory owner={{ username }} group={{ username }}
 
-- name: Create Downloads Pictures
+- name: Create Pictures
   file: path=/home/{{ username }}/Public/Library/Pictures state=directory owner={{ username }} group={{ username }}
 
 - name: Create Downloads/complete Folder
